@@ -1,0 +1,23 @@
+{
+  "name": "tuv-nord-simlab-gulp-php",
+  "description": "Simple Gulp Workflow for PHP Development",
+  "main": "",
+  "authors": [
+    "[object Object]"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "bootstrap-sass-official#~3.3.6",
+    "font-awesome": "~4.5.0"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "proxy" : "pustakalebah.dev",
+  "port" : 9000,
+  "hostname" : "202.154.25.141",
+  "username": "dev",
+  "destination": "/var/www/dion.saklik.net/public/pustakalebah"
+}
