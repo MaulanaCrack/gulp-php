@@ -15,7 +15,22 @@ var rsync = require('gulp-rsync');
 
 var projectConfig = require('./project.json');
 
-var proxyServer = projectConfig.proxy;
+var browserSyncSetting = {
+  notify: false,
+  port: projectConfig.port
+}
+
+if (projectConfig.proxy != '') {
+  browserSyncSetting.proxy = projectConfig.proxy
+} else {
+  browserSyncSetting.server = {
+    baseDir: './',
+    routes: {
+      '/bower_components': 'bower_components'
+    }
+  }
+}
+
 
 var jsDep = [
   'bower_components/jquery/dist/jquery.js',
@@ -59,11 +74,7 @@ gulp.task('fonts', () => {
 
 // watch files for changes and reload
 gulp.task('serve', ['sass'], function() {
-  browserSync({
-    notify: false,
-    port: projectConfig.port,
-     proxy: proxyServer
-  });
+  browserSync(browserSyncSetting);
 
   gulp.watch(
     [
@@ -92,9 +103,9 @@ gulp.task('deploy', () => {
     return gulp.src('dist/**')
         .pipe(rsync({
             root: 'dist',
-            hostname: projectConfig.hostname,
-            username: projectConfig.username,
-            destination: projectConfig.destination,
+            hostname: projectConfig.deploy.hostname,
+            username: projectConfig.deploy.username,
+            destination: projectConfig.deploy.destination,
             progress: true
         }));
 });
