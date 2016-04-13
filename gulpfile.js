@@ -33,12 +33,6 @@ if (projectConfig.proxy != '') {
   }
 }
 
-
-var jsDep = [
-  'bower_components/jquery/dist/jquery.js',
-  'bower_components/bootstrap/dist/js/bootstrap.js',
-];
-
 gulp.task('sass', function () {
   gulp.src('./scss/**/*.scss')
     .pipe(sourcemaps.init())
@@ -51,7 +45,11 @@ gulp.task('sass', function () {
 gulp.task('html', ['clean'], function () {
     return gulp.src([
       './**/*.php',
-      '!dist/**/*'
+      './**/*.html',
+      './**/*.json',
+      '!dist/**/*',
+      '!bower_components/**/*',
+      '!node_modules/**/*'
       ])
     .pipe(useref())
     .pipe(gulpif('*.js', uglify()))
@@ -59,7 +57,13 @@ gulp.task('html', ['clean'], function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('images', () => {
+gulp.task('script', ['clean'], function () {
+    return gulp.src('js/**/*.js')
+    .pipe(gulpif('*.js', uglify()))
+    .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('images', ['clean'], () => {
   return gulp.src('images/**/*')
     .pipe(imagemin({
       progressive: true,
@@ -68,7 +72,7 @@ gulp.task('images', () => {
     .pipe(gulp.dest('dist/images'));
 });
 
-gulp.task('fonts', () => {
+gulp.task('fonts', ['clean'], () => {
   return gulp.src('fonts/**/*.{eot,svg,ttf,woff,woff2}')
     // .pipe(gulp.dest('.tmp/fonts'))
     .pipe(gulp.dest('dist/fonts'));
@@ -97,7 +101,7 @@ gulp.task('clean', del.bind(null, ['dist']));
 //   return gulp.src('dist/*').pipe(rm());
 // });
 
-gulp.task('build', ['html', 'images', 'fonts'], () => {
+gulp.task('build', ['html', 'images', 'fonts', 'script'], () => {
   return gulp.src('dist/**/*');
 });
 
