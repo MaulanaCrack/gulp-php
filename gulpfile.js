@@ -12,6 +12,7 @@ var minifyCss = require('gulp-minify-css');
 var imagemin = require('gulp-imagemin');
 var del = require('del');
 var rsync = require('gulp-rsync');
+var historyApiFallback = require('connect-history-api-fallback');
 
 var projectConfig = require('./project.json');
 
@@ -24,7 +25,8 @@ if (projectConfig.proxy != '') {
   browserSyncSetting.proxy = projectConfig.proxy
 } else {
   browserSyncSetting.server = {
-    baseDir: './',
+    baseDir: '.',
+    middleware : [ historyApiFallback() ],
     routes: {
       '/bower_components': 'bower_components'
     }

@@ -3,8 +3,10 @@
   <title>Hello World</title>
 
   <!-- build:css css/main.min.css -->
-  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
   <!-- endbuild -->
+
+  <base href="/">
   
 </head>
 <body>
@@ -13,12 +15,22 @@
     <div id="" class="container">
       <h1>Hello World !</h1>
       <p>This is View Index</p>
+
+      <ul>
+        <li><a href="/">/</a></li>
+        <li><a href="#whoop">#whoop</a></li>
+        <li><a href="/about">/about</a></li>
+        <li><a href="/contact">/contact</a></li>
+        <li><a href="/contact/me">/contact/me</a></li>
+        <li><a href="/not-found?foo=bar">/not-found</a></li>
+      </ul>
     </div>
   </div>
 
 
   <!-- build:js scripts/vendor.min.js -->
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="bower_components/page/page.js"></script>
   <!-- endbuild -->
 
   <!-- build:js scripts/plugin.min.js -->
