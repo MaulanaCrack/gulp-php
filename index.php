@@ -21,6 +21,7 @@
 <html>
 <head>
   <title><?php echo $view ?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- build:css css/main.min.css -->
   <link rel="stylesheet" type="text/css" href="css/main.css">
