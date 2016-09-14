@@ -86,7 +86,8 @@ gulp.task('serve', ['sass'], function() {
     [
     '**/*.html',
     '**/**.php',
-    'js/**/*.js'
+    'js/**/*.js',
+    '!dist/**/*'
     ],
     {
       cwd: './'
